@@ -70,13 +70,13 @@ $settings['configuration'] = array(
 );
 $settings['templates'] = array(
 	'outerTpl' => '<ul class="files-tv">[+wrapper+]</ul>',
-	'rowTpl' => '<li class="files-tv-item">[+fieldTab:is=`onecol`:then=`<a class="google-viewed files-tv-item-link files-tv-type-document" href="[(site_url)][~[+document+]~]">[+title_1+]</a>`+][+fieldTab:is=`twocol`:then=`<a class="google-viewed files-tv-item-link files-tv-type-file" href="[(site_url)][+file+]">[+title_2+]</a>`+][+fieldTab:is=`threecol`:then=`<a class="google-viewed files-tv-item-link files-tv-type-site" href="[+site+]" target="_blank">[+title_3+]</a>`+]
+	'rowTpl' => '<li class="files-tv-item">[+fieldTab:is=`onecol`:then=`<a class="files-tv-item-link files-tv-type-document" href="[(site_url)][~[+document+]~]">[+title_1+]</a>`+][+fieldTab:is=`twocol`:then=`<a class="files-tv-item-link files-tv-type-file" href="[(site_url)][+file+]">[+title_2+]</a>`+][+fieldTab:is=`threecol`:then=`<a class="files-tv-item-link files-tv-type-site" href="[+site+]" target="_blank">[+title_3+]</a>`+]
 	</li>'
 );
 
 $settings['templatesmetodical'] = array(
 	'outerTpl' => '<h5 class="text-center">Используемая литература</h5>
 	<ul class="files-tv">[+wrapper+]</ul>',
-	'rowTpl' => '<li class="files-tv-item">[+fieldTab:is=`onecol`:then=`<a class="google-viewed files-tv-item-link files-tv-type-document" href="[(site_url)][~[+document+]~]">[+title_1+]</a>`+][+fieldTab:is=`twocol`:then=`<a class="google-viewed files-tv-item-link files-tv-type-file" href="[(site_url)][+file+]">[+title_2+]</a>`+][+fieldTab:is=`threecol`:then=`<a class="google-viewed files-tv-item-link files-tv-type-site" href="[+site+]" target="_blank">[+title_3+]</a>`+]
+	'rowTpl' => '<li class="files-tv-item">[+fieldTab:is=`onecol`:then=`<a class="files-tv-item-link files-tv-type-document" href="[(site_url)][~[+document+]~]">[+title_1+]</a>`+][+fieldTab:is=`twocol`:then=`<a class="files-tv-item-link files-tv-type-file" href="[(site_url)][+file+]">[+title_2+]</a>`+][+fieldTab:is=`threecol`:then=`<a class="files-tv-item-link files-tv-type-site" href="[+site+]" target="_blank">[+title_3+]</a>`+]
 	</li>'
 );
