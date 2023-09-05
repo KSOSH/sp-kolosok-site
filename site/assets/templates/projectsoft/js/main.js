@@ -1000,17 +1000,17 @@
 		});
 	};
 })(jQuery);
-(function($){
+(function(win, doc, $){
 	!(function(){
-		let ref = document.referrer;
+		let ref = doc.referrer;
 		try {
 			let url = new URL(ref),
 				link,
 				a;
-			if(url.origin == document.location.origin){
-				let person = document.querySelector('.news_person');
+			if(url.origin == doc.location.origin){
+				let person = doc.querySelector('.news_person');
 				if(person){
-					a = document.createElement('a');
+					a = doc.createElement('a');
 					a.innerHTML = 'Вернуться';//'<span>В</span><span>е</span><span>р</span><span>н</span><span>у</span><span>т</span><span>ь</span><span>с</span><span>я</span>';
 					//a.setAttribute('data-before', 'Вернуться');
 					a.classList.add('btn');
@@ -1024,7 +1024,7 @@
 						link = url.origin + url.pathname;
 					}
 					a.setAttribute('href', link);
-					let p = document.createElement('p');
+					let p = doc.createElement('p');
 					//p.append(a);
 					person.prepend(a);
 					person.classList.add('news_person-history')
@@ -1065,7 +1065,7 @@
 	**/
 	function isPdf(){
 		var is_pdf = false,
-			plugins = Array.from(window.navigator.plugins || {}),
+			plugins = Array.from(win.navigator.plugins || {}),
 			map = plugins.map(function(a){
 				var map = Array.from(a);
 				if (map[0].suffixes=='pdf' && !is_pdf){
@@ -1076,7 +1076,7 @@
 		return is_pdf;
 	}
 	const IS_PDF = isPdf();
-	$('.school .school-logo img').wrap('<a href="' + window.location.protocol + "//" + window.location.hostname + '/"></a>');
+	$('.school .school-logo img').wrap('<a href="' + win.location.protocol + "//" + win.location.hostname + '/"></a>');
 	/**
 	** NavBar
 	**/
@@ -1152,10 +1152,10 @@
 	});
 	
 	// ССылки поделиться в футтере
-	$(document).on("click", ".footer a[down-link]", function(e){
+	$(doc).on("click", ".footer a[down-link]", function(e){
 		e.preventDefault();
 		var attr = $(this).attr('down-link'),
-			link = window.location.href,
+			link = win.location.href,
 			title = $("h1").text() || $("title").text(),
 			description = $("meta[name=description]").attr("content"),
 			image = encodeURIComponent($("meta[itemprop=image]").attr("content")),
@@ -1201,14 +1201,14 @@
 		if(server){
 			// Если ссылка есть
 			// Открываем новое окно
-			window.open(server);
+			win.open(server);
 		}else if(download) {
 			// Если ссылки нет - скриншот
 			// Запрос на скриншот страницы
 			$("body").addClass('screen');
 			var laad_screen = false,
 				jq_xhr = $.ajax({
-				url: window.location.origin + '/screenshot/',
+				url: win.location.origin + '/screenshot/',
 				type: 'POST',
 				data: 'shot=' + link + '&title=' + download,
 				responseType: 'blob',
@@ -1250,7 +1250,7 @@
 		}
 	})
 	.on("click", "a[href$='.pdf'], a[href$='.docx'], a[href$='.xlsx']", function(e){
-		var base = window.location.origin + '/',
+		var base = win.location.origin + '/',
 			reg = new RegExp("^" + base),
 			href = this.href,
 			test = this.href,
@@ -1258,11 +1258,11 @@
 			arr = href.split('.'),
 			ext = arr.at(-1).toLowerCase(),
 			options = {};
-		if(reg.test(href)){
+		if(reg.test(href)){            
 			switch (ext){
 				case "pdf":
 					href = href.replace(base, '');
-					go = window.location.origin + '/viewer/pdf_viewer/?file=' + href;
+					go = win.location.origin + '/viewer/pdf_viewer/?file=' + href;
 					options = {
 						src: go,
 						opts : {
@@ -1285,7 +1285,7 @@
 					return !1;
 					break;
 				case "xlsx":
-					go = window.location.origin + '/viewer/xlsx_viewer/?file=' + test;
+					go = win.location.origin + '/viewer/xlsx_viewer/?file=' + test;
 					options = {
 						src: go,
 						type: 'iframe',
@@ -1309,7 +1309,7 @@
 					return !1;
 					break;
 				case "docx":
-					go = window.location.origin + '/viewer/docx_viewer/?file=' + test;
+					go = win.location.origin + '/viewer/docx_viewer/?file=' + test;
 					options = {
 						src: go,
 						type: 'iframe',
@@ -1337,7 +1337,7 @@
 	})
 	.on("click", "a[href$='.jpg'], a[href$='.jpeg'], a[href$='.png'], a[href$='.gif']", function(e){
 		// Изображения  на сервере
-		var base = window.location.origin,
+		var base = win.location.origin,
 			reg = new RegExp("^" + base),
 			href = this.href,
 			$this = $(this);
@@ -1358,7 +1358,7 @@
 		$(".footer .icons").removeClass("open");
 	}).on("click", ".topmenu ul > li > span", function(e){
 		e.preventDefault();
-		window.location.href = window.location.protocol + "//" + window.location.hostname + "/";
+		win.location.href = win.location.protocol + "//" + win.location.hostname + "/";
 		return !1;
 	});
 
@@ -1411,13 +1411,13 @@
 		$msosh.length && initSosh();
 	};
 	if($('#map').length){
-		var script = document.createElement('script');
+		var script = doc.createElement('script');
 		script.type = "text/javascript";
 		script.src = "https://api-maps.yandex.ru/2.1.79/?apikey=dd535420-e429-48ca-a9e6-8d64c40e5bde&lang=ru_RU";
 		script.onload = function(){
 			ymaps.ready(mapsInit);
 		}
-		document.body.append(script);
+		doc.body.append(script);
 	}
 	/**
 	** End Yandex maps
@@ -1444,46 +1444,48 @@
 	/**
 	** New Year
 	**/
-	(function(){
+	(function(bodyEl){
 		var date = new Date(),
 			day = date.getDate(),
 			month = date.getMonth() + 1;
 		if((day > 15 && month == 12) || (day < 15 && month == 1)) {
-			$("body").addClass('new_year');
+			bodyEl.addClass('new_year');
 		}
-	})();
+	})($("body"));
 	/**
 	 * Cookies
 	**/
-	(function(){
+	(function(cock){
+		/**
+		 * Сколько дней не возникать
+		 **/
+		const POLICY_DATE = 30;
 		const setCookieNotify = function(){
 			$(".notification-form").addClass("hidden");
 			/* Set Cookie`s */
-			let date = new Date(Date.now() + 86400000 * COOKIE_DATE);
-			Cookies.set('notify_policy', 'true', { expires: date, path: '/' });
+			let date = new Date(Date.now() + 86400000 * POLICY_DATE);
+			cock.set('notify_policy', 'true', { expires: date, path: '/' });
 		}
-		$(document).on("click", ".notification-button .btn", function(e){
+		$(doc).on("click", ".notification-button .btn", function(e){
 			e.preventDefault();
 			setCookieNotify();
 			return !1;
-		})
-		if(Cookies.get('notify_policy') != "true") {
+		});
+
+		if(cock.get('notify_policy') != "true") {
 			/**
-			 * Если компьютер не в школе
 			 * Показываем сообщение
 			**/
-			if(HTTP_CLIENT.int != 1){
-				$('.notification-form').removeClass('hidden');
-				var notIni = setTimeout(setCookieNotify, 10000);
-			}
+			$('.notification-form').removeClass('hidden');
+			var notIni = setTimeout(setCookieNotify, 10000);
 		}
-	})();
+	})(Cookies);
 	
 	/**
 	** Buttons
 	**/
-	(function(){
-		$('.btn').btnAni({});
-	})();
+	(function(btnEl){
+		btnEl.btnAni({});
+	})($('.btn'));
 	
-}(jQuery));
+}(window, document, jQuery));
