@@ -3,9 +3,9 @@
 <% } %><% if (fontfaceStyles) { %>// Font family "<%= fontFamilyName %>"
 @font-face {
 	font-family:"<%= fontFamilyName %>";
-	src:url("@{fontpath}/IconsSite.woff?@{hashes}") format("woff"),
-		url("@{fontpath}/IconsSite.woff2?@{hashes}") format("woff2"),
-		url("@{fontpath}/IconsSite.ttf?@{hashes}") format("truetype");
+	src:url("@{fontpath}/<%= fontFamilyName %>.woff?@{hashes}") format("woff"),
+		url("@{fontpath}/<%= fontFamilyName %>.woff2?@{hashes}") format("woff2"),
+		url("@{fontpath}/<%= fontFamilyName %>.ttf?@{hashes}") format("truetype");
 	font-weight:normal;
 	font-style:normal;
 	font-display: swap;
