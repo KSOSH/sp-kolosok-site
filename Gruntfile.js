@@ -189,7 +189,7 @@ module.exports = function(grunt) {
 					relativeFontPath: '@{fontpath}',
 					destLess: 'src/less/fonts',
 					font: 'IconsSite',
-					types: 'ttf,woff',
+					types: 'ttf',
 					fontFamilyName: 'IconsSite',
 					stylesheets: ['less'],
 					syntax: 'bootstrap',
