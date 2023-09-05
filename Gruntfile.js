@@ -28,7 +28,6 @@ module.exports = function(grunt) {
 			"concat",
 			"uglify",
 			"webfont",
-			//"ttf2eot",
 			"ttf2woff",
 			"ttf2woff2",
 			"imagemin",
@@ -73,7 +72,6 @@ module.exports = function(grunt) {
 		],
 		fonts: [
 			"clean:all",
-			//"ttf2eot",
 			"ttf2woff",
 			"ttf2woff2",
 			"less",
@@ -87,7 +85,6 @@ module.exports = function(grunt) {
 		glyph: [
 			"clean:all",
 			"webfont",
-			//"ttf2eot",
 			"ttf2woff",
 			"ttf2woff2",
 			"less",
@@ -343,12 +340,6 @@ module.exports = function(grunt) {
 						dest: '<%= globalConfig.gasave %>/images/'
 					}
 				]
-			}
-		},
-		ttf2eot: {
-			default: {
-				src: 'src/fonts/*.ttf',
-				dest: '<%= globalConfig.gasave %>/fonts/'
 			}
 		},
 		ttf2woff: {
