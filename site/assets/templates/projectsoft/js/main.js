@@ -1259,8 +1259,6 @@
 			ext = arr.at(-1).toLowerCase(),
 			options = {};
 		if(reg.test(href)){
-			$(this).data('google', go);
-			$(this).data('options', options);
 			switch (ext){
 				case "pdf":
 					href = href.replace(base, '');

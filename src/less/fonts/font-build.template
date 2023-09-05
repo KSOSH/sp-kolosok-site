@@ -2,9 +2,10 @@
 <% for (var glyphIdx = 0; glyphIdx < glyphs.length; glyphIdx++) { %>@<%= classPrefix %><%= glyphs[glyphIdx] %>: "<% if (addLigatures) { %><%= glyphs[glyphIdx] %><% } else {%>\<%= codepoints[glyphIdx] %><% } %>";
 <% } %><% if (fontfaceStyles) { %>// Font family "<%= fontFamilyName %>"
 @font-face {
-	font-family:"<%= fontFamilyName %>";<% if (fontSrc1) { %>
-	src:<%= fontSrc1 %>;<% }%>
-	src:<%= fontSrc2 %>;
+	font-family:"<%= fontFamilyName %>";
+	src:url("@{fontpath}/IconsSite.woff?@{hashes}") format("woff"),
+		url("@{fontpath}/IconsSite.woff2?@{hashes}") format("woff2"),
+		url("@{fontpath}/IconsSite.ttf?@{hashes}") format("truetype");
 	font-weight:normal;
 	font-style:normal;
 	font-display: swap;
